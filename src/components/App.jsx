@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Description from "./Description/Description";
 import Feedback from "./Feedback/Feedback";
 import Options from "./Options/Options";
 import Notification from "./Notification/Notification";
+import createGoodBubble from "../utils/goodBubbles";
+import createBadBubble from "../utils/badBubbles";
+import createNeutralBubble from "../utils/neutralBubble";
 
 export default function App() {
   const [feedback, setFeedback] = useState({
@@ -28,6 +31,16 @@ export default function App() {
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+
+  useEffect(() => {
+    createGoodBubble();
+  }, [feedback.good]);
+  useEffect(() => {
+    createBadBubble();
+  }, [feedback.bad]);
+  useEffect(() => {
+    createNeutralBubble();
+  }, [feedback.neutral]);
 
   return (
     <>
