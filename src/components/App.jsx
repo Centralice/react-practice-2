@@ -10,10 +10,17 @@ export default function App() {
     bad: 0,
   });
 
+  const updateFeedback = (feedbackType) => {
+    setFeedback({
+      ...feedback,
+      [feedbackType]: feedback[feedbackType] + 1,
+    });
+  };
+
   return (
     <>
       <Description />
-      <Options />
+      <Options updateFeedback={updateFeedback} />
       <Feedback feedback={feedback} />
     </>
   );
