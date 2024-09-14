@@ -27,13 +27,22 @@ export default function App() {
   };
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
 
   return (
     <>
       <Description />
-      <Options reset={reset} total={totalFeedback} updateFeedback={updateFeedback} />
+      <Options
+        reset={reset}
+        total={totalFeedback}
+        updateFeedback={updateFeedback}
+      />
       {totalFeedback > 0 ? (
-        <Feedback total={totalFeedback} feedback={feedback} />
+        <Feedback
+          positive={positiveFeedback}
+          total={totalFeedback}
+          feedback={feedback}
+        />
       ) : (
         <Notification />
       )}
