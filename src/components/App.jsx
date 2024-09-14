@@ -1,5 +1,5 @@
-import Practice from "./Practice/Practice";
+import Description from "./Description/Description";
 
 export default function App() {
-  return <Practice />;
+  return <Description />;
 }
