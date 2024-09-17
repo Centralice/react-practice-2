@@ -7,12 +7,12 @@ import createGoodBubble from "../utils/goodBubbles";
 import createBadBubble from "../utils/badBubbles";
 import createNeutralBubble from "../utils/neutralBubble";
 
+const savedFeedback = JSON.parse(window.localStorage.getItem("feedback"));
+
 export default function App() {
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+  const [feedback, setFeedback] = useState(
+    savedFeedback ? savedFeedback : { good: 0, neutral: 0, bad: 0 }
+  );
 
   const updateFeedback = (feedbackType) => {
     setFeedback({
@@ -41,6 +41,10 @@ export default function App() {
   useEffect(() => {
     createNeutralBubble();
   }, [feedback.neutral]);
+
+  useEffect(() => {
+    window.localStorage.setItem("feedback", JSON.stringify(feedback));
+  }, [feedback]);
 
   return (
     <>
