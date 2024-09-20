@@ -36,12 +36,21 @@ export default function App() {
   const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
 
   useEffect(() => {
+    if (feedback.good === 0 && feedback.bad === 0 && feedback.neutral === 0) {
+      return;
+    }
     createGoodBubble();
   }, [feedback.good]);
   useEffect(() => {
+    if (feedback.good === 0 && feedback.bad === 0 && feedback.neutral === 0) {
+      return;
+    }
     createBadBubble();
   }, [feedback.bad]);
   useEffect(() => {
+    if (feedback.good === 0 && feedback.bad === 0 && feedback.neutral === 0) {
+      return;
+    }
     createNeutralBubble();
   }, [feedback.neutral]);
 
